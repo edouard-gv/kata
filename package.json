@@ -1,0 +1,43 @@
+{
+  "name": "kata",
+  "version": "1.0.0",
+  "description": "Various kata, written in TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc -w",
+    "start": "npm run tsc",
+    "test": "jest --config jest.config.json",
+    "format": "prettier --write 'src/**/*.ts'"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.5"
+  },
+  "dependencies": {},
+  "prettier": {
+    "printWidth": 120
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathieueveillard/kata.git"
+  },
+  "keywords": [
+    "kata",
+    "typescript",
+    "diamond",
+    "rpn",
+    "roman",
+    "calculator",
+    "reversi",
+    "fizzbuzz"
+  ],
+  "author": "Mathieu Eveillard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mathieueveillard/kata/issues"
+  },
+  "homepage": "https://github.com/mathieueveillard/kata#readme"
+}
