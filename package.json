@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc -w",
     "start": "npm run tsc",
-    "test": "jest --config jest.config.json",
+    "test": "jest --watch --config jest.config.json",
     "format": "prettier --write 'src/**/*.ts'"
   },
   "devDependencies": {
