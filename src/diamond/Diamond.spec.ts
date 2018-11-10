@@ -1,6 +1,6 @@
 import { diamond, buildMakeRowFunction } from "./Diamond";
 
-describe.skip("Test of the test framework", function() {
+describe("Test of the test framework", function() {
   it.skip("Should fail", function() {
     expect(0).toEqual(1);
   });
