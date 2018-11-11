@@ -8,8 +8,9 @@
 
 ### Intermediate
 
-- [Diamond](https://github.com/mathieueveillard/kata/tree/master/src/diamond)
+- [Roman calculator](https://github.com/mathieueveillard/kata/tree/master/src/romanCalculator)
 - [RPN](https://github.com/mathieueveillard/kata/tree/master/src/rpn)
+- [Diamond](https://github.com/mathieueveillard/kata/tree/master/src/diamond)
 
 ### Advanced
 
@@ -17,7 +18,6 @@
 
 ## To do
 
-- Roman calculator
 - Depth first search (http://codingdojo.org/kata/DepthFirstSearch/)
 - Flight planner (http://codingdojo.org/kata/Lags/)
 
