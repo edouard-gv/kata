@@ -26,13 +26,17 @@
   },
   "keywords": [
     "kata",
+    "node",
     "typescript",
+    "jest",
     "diamond",
-    "rpn",
+    "fizzbuzz",
+    "flight",
+    "planner",
+    "reversi",
     "roman",
     "calculator",
-    "reversi",
-    "fizzbuzz"
+    "rpn"
   ],
   "author": "Mathieu Eveillard",
   "license": "MIT",

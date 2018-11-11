@@ -14,12 +14,8 @@
 
 ### Advanced
 
+- [Flight planner](https://github.com/mathieueveillard/kata/tree/master/src/flightPlanner)
 - [Reversi](https://github.com/mathieueveillard/kata/tree/master/src/reversi)
-
-## To do
-
-- Depth first search (http://codingdojo.org/kata/DepthFirstSearch/)
-- Flight planner (http://codingdojo.org/kata/Lags/)
 
 ## See also
 
