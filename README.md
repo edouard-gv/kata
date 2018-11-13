@@ -11,6 +11,7 @@
 - [Roman calculator](https://github.com/mathieueveillard/kata/tree/master/src/romanCalculator)
 - [RPN](https://github.com/mathieueveillard/kata/tree/master/src/rpn)
 - [Diamond](https://github.com/mathieueveillard/kata/tree/master/src/diamond)
+- [Gilded Rose refactoring kata](https://github.com/mathieueveillard/kata/tree/master/src/gildedRose)
 
 ### Advanced
 
