@@ -1,25 +1,23 @@
 type Char = " " | "*";
 
 export function diamond(width: number): Char[][] {
-  const makeRow = buildMakeRowFunction(width);
-  const emptyArray = Array(width).fill(undefined);
-  return emptyArray.map((_, row: number) => makeRow(row));
-}
-
-export function buildMakeRowFunction(width: number) {
-  const isWithinDiamond = buildIsWithinDiamondFunction(width);
-  const emptyArray = Array(width).fill(undefined);
-  return function makeRow(row: number): Char[] {
-    return emptyArray.map((_, column: number) => (isWithinDiamond(row, column) ? "*" : " "));
-  };
-}
-
-function buildIsWithinDiamondFunction(width: number) {
   const dimension: number = (width + 1) / 2;
-  return function isWithinDiamond(row: number, column: number): boolean {
-    if (row < dimension) {
-      return column >= dimension - row - 1 && column < dimension + row;
-    }
-    return column > row - dimension && column < dimension + width - row - 1;
+  const makeRow = buildMakeRowFunction(dimension);
+  const emptyArray = Array(dimension).fill(undefined);
+  const topHalfDiamond: Char[][] = emptyArray.map((_, row: number) => makeRow(row));
+  return expandWithSymetricalArray(topHalfDiamond);
+}
+
+export function buildMakeRowFunction(dimension: number) {
+  const emptyArray = Array(dimension).fill(undefined);
+  return function makeRow(row: number): Char[] {
+    const leftHalfRow: Char[] = emptyArray.map((_, column: number) => (column >= dimension - row - 1 ? "*" : " "));
+    return expandWithSymetricalArray(leftHalfRow);
   };
+}
+
+function expandWithSymetricalArray<T>(array: T[]): T[] {
+  const symetricalArray: T[] = array.slice().reverse();
+  symetricalArray.shift();
+  return [...array, ...symetricalArray];
 }
