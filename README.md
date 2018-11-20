@@ -8,6 +8,7 @@
 
 ### Intermediate
 
+- [Calculator](https://github.com/mathieueveillard/kata/tree/master/src/calculator)
 - [Roman calculator](https://github.com/mathieueveillard/kata/tree/master/src/romanCalculator)
 - [RPN](https://github.com/mathieueveillard/kata/tree/master/src/rpn)
 - [Diamond](https://github.com/mathieueveillard/kata/tree/master/src/diamond)
