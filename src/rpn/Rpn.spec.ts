@@ -39,7 +39,36 @@ describe("Recursivity", function() {
 });
 
 describe("Edge cases", function() {
-  it("Check for double digit numbers", function() {
+  it("Should handle double digit numbers", function() {
     expect(rpn("10 1 +")).toEqual(11);
+  });
+
+  it("Should handle double digit numbers", function() {
+    expect(rpn("2 -1 *")).toEqual(-2);
+  });
+});
+
+describe("Error management", function() {
+  it("Should throw error in case instruction is too short", function() {
+    expect(() => rpn("")).toThrowError("Error: insufficient number of arguments");
+    expect(() => rpn("1")).toThrowError("Error: insufficient number of arguments");
+    expect(() => rpn("1 1")).toThrowError("Error: insufficient number of arguments");
+  });
+
+  it("Should throw error in case of wrong instruction (expected number, got operator)", function() {
+    expect(() => rpn("/ 1 +")).toThrowError("Error: a number is expected, but received '/'");
+  });
+
+  it("Should throw error in case of wrong instruction (expected operator, got number)", function() {
+    expect(() => rpn("1 1 1")).toThrowError(
+      "Error: an operator is expected, but received '1'. Allowed operators are: +, -, * and /"
+    );
+  });
+
+  it("Should throw error in case of wrong instruction (expected number or operator, got anything)", function() {
+    expect(() => rpn("a 1 +")).toThrowError("Error: a number is expected, but received 'a'");
+    expect(() => rpn("1 1 a")).toThrowError(
+      "Error: an operator is expected, but received 'a'. Allowed operators are: +, -, * and /"
+    );
   });
 });
