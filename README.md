@@ -9,7 +9,6 @@
 ### Intermediate
 
 - [Game of life](https://github.com/mathieueveillard/kata/tree/master/src/gameOfLife)
-- [Calculator](https://github.com/mathieueveillard/kata/tree/master/src/calculator)
 - [Roman calculator](https://github.com/mathieueveillard/kata/tree/master/src/romanCalculator)
 - [RPN](https://github.com/mathieueveillard/kata/tree/master/src/rpn)
 - [Diamond](https://github.com/mathieueveillard/kata/tree/master/src/diamond)
@@ -17,8 +16,9 @@
 
 ### Advanced
 
-- [Flight planner](https://github.com/mathieueveillard/kata/tree/master/src/flightPlanner)
 - [Reversi](https://github.com/mathieueveillard/kata/tree/master/src/reversi)
+- [Flight planner](https://github.com/mathieueveillard/kata/tree/master/src/flightPlanner)
+- [Calculator](https://github.com/mathieueveillard/kata/tree/master/src/calculator)
 
 ## See also
 
