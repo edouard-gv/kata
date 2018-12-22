@@ -1,69 +1,56 @@
 type Operator = "+" | "-" | "*" | "/";
 
+type Operand = number;
+
+interface Operation {
+  firstOperand: Operand;
+  secondOperand: Operand;
+  operator: Operator;
+}
+
 export function rpn(instruction: string): number {
-  return rpnHelper(instruction.split(" "));
+  return rpnHelper(instruction.split(" ").reverse()).result;
 }
 
-export function rpnHelper(instruction: Array<number | string>): number {
-  const { leftOperand, rightOperand, operator, remaining } = parseInstruction(instruction);
-  const result: number = computeOperation(leftOperand, rightOperand, operator);
-  if (remaining.length === 0) {
-    return result;
+function rpnHelper(instruction: string[]): { result: number; instruction: string[] } {
+  const [next, ...remaining] = instruction;
+  if (isOperator(next)) {
+    const { result: secondOperand, instruction: remainingAfterSecondOperand } = rpnHelper(remaining);
+    const { result: firstOperand, instruction: remainingAfterFirstOperand } = rpnHelper(remainingAfterSecondOperand);
+    const operation: Operation = {
+      firstOperand,
+      secondOperand,
+      operator: next
+    };
+    const result: number = computeOperation(operation);
+    return {
+      result,
+      instruction: remainingAfterFirstOperand
+    };
   }
-  return rpnHelper([result, ...remaining]);
-}
-
-function parseInstruction(
-  instruction: Array<number | string>
-): { leftOperand: number; rightOperand: number; operator: Operator; remaining: Array<number | string> } {
-  if (instruction.length < 3) {
-    throw new Error(`Error: insufficient number of arguments`);
-  }
-  const [left, right, operator, ...remaining] = instruction;
   return {
-    leftOperand: parseNumber(left as string),
-    rightOperand: parseNumber(right as string),
-    operator: parseOperator(operator as string),
-    remaining
+    result: parseInt(next),
+    instruction: remaining
   };
-}
-
-function parseNumber(s: string): number {
-  const resultOfParsing: number = parseInt(s, 10);
-  if (isNaN(resultOfParsing)) {
-    throw new Error(makeOperandErrorMessage(s));
-  }
-  return resultOfParsing;
-}
-
-function parseOperator(operator: string): Operator {
-  if (!isOperator(operator)) {
-    throw new Error(makeOperatorErrorMessage(operator));
-  }
-  return operator;
 }
 
 function isOperator(s: Operator | string): s is Operator {
   return s === "+" || s === "-" || s === "*" || s === "/";
 }
 
-function computeOperation(leftOperand: number, rightOperand: number, operator: Operator): number {
+function computeOperation({ firstOperand, secondOperand, operator }: Operation): number {
   switch (operator) {
     case "+":
-      return leftOperand + rightOperand;
+      return firstOperand + secondOperand;
     case "-":
-      return leftOperand - rightOperand;
+      return firstOperand - secondOperand;
     case "*":
-      return leftOperand * rightOperand;
+      return firstOperand * secondOperand;
     case "/":
-      return leftOperand / rightOperand;
+      return firstOperand / secondOperand;
     default:
       throw new Error(makeOperatorErrorMessage(operator));
   }
-}
-
-function makeOperandErrorMessage(received: string): string {
-  return `Error: a number is expected, but received '${received}'`;
 }
 
 function makeOperatorErrorMessage(received: string): string {
