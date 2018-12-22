@@ -18,7 +18,7 @@
 - [RPN](https://github.com/mathieueveillard/kata/tree/master/src/rpn)
 - [Reversi](https://github.com/mathieueveillard/kata/tree/master/src/reversi)
 - [Flight planner](https://github.com/mathieueveillard/kata/tree/master/src/flightPlanner)
-- [Calculator](https://github.com/mathieueveillard/kata/tree/master/src/calculator)
+- [String calculator](https://github.com/mathieueveillard/kata/tree/master/src/stringCalculator)
 
 ## See also
 

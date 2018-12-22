@@ -1,4 +1,4 @@
-# Calculator
+# String calculator
 
 Write a function that makes arithmetical computations (+, -, \*, /), taking a string as input. E.g.
 
