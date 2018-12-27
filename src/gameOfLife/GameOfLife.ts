@@ -1,8 +1,15 @@
+// J'aurais mis deux constantes, X et O par exemple, pour éviter d'aoir à taper des guillemets, et pouvoir changer
+// l'implémentation par un espace ou un rond de la représentation vivant / mort.
+
+// Ce n'est pas une cellule, mais l'état d'une cellule => renommer en CellState ?
 export type Cell = " " | "●";
 
 export type Grid = Cell[][];
 
+//Et c'est plutôt ça la cellule ?
 export interface Coordinates {
+  // x et y, pour plus de compacité => et plus de lisibilité. En plus ligne et colonne suppose que tu lis ton tableau
+  // en deux dimensions dans un certain sens.
   line: number;
   column: number;
 }
@@ -29,6 +36,10 @@ export function shouldLive(grid: Grid, coordinates: Coordinates): boolean {
   const numberOfAliveNeighbours: number = DIRECTIONS.map(computeNeighbourCoordinates(coordinates))
     .filter(isInsideTheGrid(grid))
     .map(isAlive(grid))
+    //Je préfère sum à count dans le cas d'une fonction - mais ça vient peut-être d'une habitude "sum.if"
+    //Dans ce cas précis, j'aurais préféré un countIfTrue (ou sumIfTrue), puisqu'on ne compare pas avec l'état "alive"
+    //C'est un cas particulier ou je préfère le nom technique (ce que ça fait) au nom métier (ce que ça doit faire).
+    //=> proposition d'un premier refacto.
     .reduce(countAliveNeighbours, 0);
 
   if (isAlive(grid)(coordinates)) {
