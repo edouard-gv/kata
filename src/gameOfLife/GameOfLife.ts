@@ -29,7 +29,8 @@ export function shouldLive(grid: Grid, coordinates: Coordinates): boolean {
   const numberOfAliveNeighbours: number = getNeighboursCoordinates(coordinates)
     .filter(isInsideTheGrid(grid))
     .map(getCell(grid))
-    .reduce(countAliveNeighbours, 0);
+    .filter(isCellAlive)
+    .length;
 
   if (isCellAlive(getCell(grid)(coordinates))) {
     return numberOfAliveNeighbours === 2 || numberOfAliveNeighbours === 3;
@@ -58,10 +59,6 @@ function getCell(grid: Grid) {
 
 function isCellAlive(cell: Cell) {
     return cell === "●";
-}
-
-function countAliveNeighbours(numberOfAliveNeighbours: number, neighbour: Cell): number {
-  return isCellAlive(neighbour) ? numberOfAliveNeighbours + 1 : numberOfAliveNeighbours;
 }
 
 function computeGridDimensions(grid: Grid): { width: number; height: number } {
