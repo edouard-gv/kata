@@ -35,14 +35,10 @@ export function nextGeneration(grid: Grid): Grid {
 export function shouldLive(grid: Grid, coordinates: Coordinates): boolean {
   const numberOfAliveNeighbours: number = DIRECTIONS.map(computeNeighbourCoordinates(coordinates))
     .filter(isInsideTheGrid(grid))
-    .map(isAlive(grid))
-    //Je préfère sum à count dans le cas d'une fonction - mais ça vient peut-être d'une habitude "sum.if"
-    //Dans ce cas précis, j'aurais préféré un countIfTrue (ou sumIfTrue), puisqu'on ne compare pas avec l'état "alive"
-    //C'est un cas particulier ou je préfère le nom technique (ce que ça fait) au nom métier (ce que ça doit faire).
-    //=> proposition d'un premier refacto.
+    .map(getCell(grid))
     .reduce(countAliveNeighbours, 0);
 
-  if (isAlive(grid)(coordinates)) {
+  if (isCellAlive(getCell(grid)(coordinates))) {
     return numberOfAliveNeighbours === 2 || numberOfAliveNeighbours === 3;
   }
   return numberOfAliveNeighbours === 3;
@@ -99,14 +95,18 @@ function isInsideTheGrid(grid: Grid) {
   };
 }
 
-function isAlive(grid: Grid) {
-  return function({ line, column }: Coordinates): boolean {
-    return grid[line][column] === "●";
-  };
+function getCell(grid: Grid) {
+  return function({ line, column }: Coordinates): Cell {
+    return grid[line][column];
+  }
 }
 
-function countAliveNeighbours(numberOfAliveNeighbours: number, neighbourIsAlive: boolean): number {
-  return neighbourIsAlive ? numberOfAliveNeighbours + 1 : numberOfAliveNeighbours;
+function isCellAlive(cell: Cell) {
+    return cell === "●";
+}
+
+function countAliveNeighbours(numberOfAliveNeighbours: number, neighbour: Cell): number {
+  return isCellAlive(neighbour) ? numberOfAliveNeighbours + 1 : numberOfAliveNeighbours;
 }
 
 function computeGridDimensions(grid: Grid): { width: number; height: number } {
