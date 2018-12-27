@@ -15,8 +15,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", " "], [" ", "●", " "], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -30,8 +30,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", " "], ["●", "●", " "], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -45,8 +45,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", " "], ["●", "●", "●"], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -60,8 +60,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", "●"], ["●", "●", " "], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -75,8 +75,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", "●"], ["●", "●", " "], ["●", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -90,8 +90,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", "●"], ["●", "●", " "], ["●", "●", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -105,8 +105,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", " ", "●"], ["●", " ", " "], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -120,8 +120,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", "●", "●"], ["●", " ", " "], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -135,8 +135,8 @@ describe("3 x 3 grid, computation for the cell at the middle of the grid", funct
     // GIVEN
     const grid: Grid = [[" ", "●", "●"], ["●", " ", " "], [" ", " ", "●"]];
     const coordinates: Coordinates = {
-      line: 1,
-      column: 1
+      x: 1,
+      y: 1
     };
 
     // WHEN
@@ -152,8 +152,8 @@ describe("Computation for whichever cell of the grid", function() {
     // GIVEN
     const grid: Grid = [["●", " ", " "], [" ", "●", "●"], [" ", " ", " "]];
     const coordinates: Coordinates = {
-      line: 0,
-      column: 1
+      x: 0,
+      y: 1
     };
 
     // WHEN

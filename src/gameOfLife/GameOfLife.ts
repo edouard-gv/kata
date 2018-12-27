@@ -8,15 +8,8 @@ export type Grid = Cell[][];
 
 //Et c'est plutôt ça la cellule ?
 export interface Coordinates {
-  // x et y, pour plus de compacité => et plus de lisibilité. En plus ligne et colonne suppose que tu lis ton tableau
-  // en deux dimensions dans un certain sens.
-  line: number;
-  column: number;
-}
-
-interface Direction {
-  deltaLine: -1 | 0 | 1;
-  deltaColumn: -1 | 0 | 1;
+  x: number;
+  y: number;
 }
 
 export function nextGeneration(grid: Grid): Grid {
@@ -25,7 +18,7 @@ export function nextGeneration(grid: Grid): Grid {
   for (let line = 0; line < height; line++) {
     const row: Cell[] = [];
     for (let column = 0; column < width; column++) {
-      row.push(shouldLive(grid, { line, column }) ? "●" : " ");
+      row.push(shouldLive(grid, { x: line, y: column }) ? "●" : " ");
     }
     nextGrid.push(row);
   }
@@ -33,7 +26,7 @@ export function nextGeneration(grid: Grid): Grid {
 }
 
 export function shouldLive(grid: Grid, coordinates: Coordinates): boolean {
-  const numberOfAliveNeighbours: number = DIRECTIONS.map(computeNeighbourCoordinates(coordinates))
+  const numberOfAliveNeighbours: number = getNeighboursCoordinates(coordinates)
     .filter(isInsideTheGrid(grid))
     .map(getCell(grid))
     .reduce(countAliveNeighbours, 0);
@@ -44,60 +37,22 @@ export function shouldLive(grid: Grid, coordinates: Coordinates): boolean {
   return numberOfAliveNeighbours === 3;
 }
 
-const DIRECTIONS: Direction[] = [
-  {
-    deltaLine: -1,
-    deltaColumn: 0
-  },
-  {
-    deltaLine: -1,
-    deltaColumn: 1
-  },
-  {
-    deltaLine: 0,
-    deltaColumn: 1
-  },
-  {
-    deltaLine: 1,
-    deltaColumn: 1
-  },
-  {
-    deltaLine: 1,
-    deltaColumn: 0
-  },
-  {
-    deltaLine: 1,
-    deltaColumn: -1
-  },
-  {
-    deltaLine: 0,
-    deltaColumn: -1
-  },
-  {
-    deltaLine: -1,
-    deltaColumn: -1
-  }
-];
-
-function computeNeighbourCoordinates({ line, column }: Coordinates) {
-  return function({ deltaLine, deltaColumn }: Direction): Coordinates {
-    return {
-      line: line + deltaLine,
-      column: column + deltaColumn
-    };
-  };
+function getNeighboursCoordinates({x, y}: Coordinates): Coordinates[] {
+  return [{x: x-1, y: y-1}, {x: x-1, y: y  }, {x: x-1, y: y+1},
+          {x: x  , y: y-1}  /*    cell    */, {x: x  , y: y+1},
+          {x: x+1, y: y-1}, {x: x+1, y: y  }, {x: x+1, y: y+1}];
 }
 
 function isInsideTheGrid(grid: Grid) {
   const { width, height } = computeGridDimensions(grid);
-  return function({ line, column }: Coordinates): boolean {
-    return line > -1 && line < height && column > -1 && column < width;
+  return function({ x, y }: Coordinates): boolean {
+    return x > -1 && x < height && y > -1 && y < width;
   };
 }
 
 function getCell(grid: Grid) {
-  return function({ line, column }: Coordinates): Cell {
-    return grid[line][column];
+  return function({ x, y }: Coordinates): Cell {
+    return grid[x][y];
   }
 }
 
